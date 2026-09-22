@@ -1,0 +1,21 @@
+spring:
+  config:
+    import: optional:classpath:application-defaults.yml
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://test-issuer.invalid
+          jwk-set-uri: https://test-issuer.invalid/jwks
+          audience: retailedge-api
+  datasource:
+    url: jdbc:h2:mem:retailedge;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+recovery:
+  scan:
+    batch-size: 2

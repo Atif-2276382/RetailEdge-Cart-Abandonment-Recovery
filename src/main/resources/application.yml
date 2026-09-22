@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: retailedge-cart-abandonment-recovery
+  config:
+    import: optional:classpath:application-defaults.yml
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${JWT_ISSUER_URI}
+          jwk-set-uri: ${JWT_JWK_SET_URI}
+          audience: ${JWT_AUDIENCE:retailedge-api}
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/retailedge}
+    username: ${DATABASE_USERNAME:retailedge}
+    password: ${DATABASE_PASSWORD:retailedge}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+server:
+  port: ${PORT:8080}
