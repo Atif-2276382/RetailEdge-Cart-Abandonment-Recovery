@@ -32,17 +32,7 @@ The database initialization scripts in `db/init` will run automatically when the
 
 The application reads database and JWT settings from environment variables. Set them before starting the app.
 
-### Linux/macOS
 
-```bash
-export DATABASE_URL=jdbc:postgresql://localhost:5432/retailedge
-export DATABASE_USERNAME=retailedge
-export DATABASE_PASSWORD=retailedge
-export JWT_ISSUER_URI=https://your-issuer.example.com
-export JWT_JWK_SET_URI=https://your-issuer.example.com/.well-known/jwks.json
-export JWT_AUDIENCE=retailedge-api
-export PORT=8080
-```
 
 ### Windows PowerShell
 
@@ -58,7 +48,27 @@ $env:PORT = "8080"
 
 > If you are using a local or test JWT provider, replace the issuer and JWK values with your actual values.
 
-## 3. Run the application
+## 3. Build the application
+
+To create a deployable JAR file, run:
+
+```bash
+mvn clean package
+```
+
+This creates the packaged application in:
+
+```text
+target/retailedge-cart-abandonment-recovery-0.0.1-SNAPSHOT.jar
+```
+
+You can also run the JAR directly with:
+
+```bash
+java -jar target/retailedge-cart-abandonment-recovery-0.0.1-SNAPSHOT.jar
+```
+
+## 4. Run the application
 
 From the project root:
 
@@ -68,11 +78,11 @@ mvn spring-boot:run
 
 The application will start on:
 
-
+```text
 http://localhost:8080
+```
 
-
-## 4. Health check
+## 5. Health check
 
 A public health endpoint is available:
 
@@ -80,7 +90,7 @@ A public health endpoint is available:
 curl http://localhost:8080/api/v1/health
 ```
 
-## 5. Run tests
+## 6. Run tests
 
 ```bash
 docker compose up -d db
