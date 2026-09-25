@@ -3,6 +3,7 @@ package com.retailedge.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -45,7 +46,7 @@ class CartAbandonmentServiceTest {
     void setUp() {
         service = new CartAbandonmentService(
                 repository, Clock.fixed(NOW, ZoneOffset.UTC), 2);
-        when(repository.save(any(CartAbandonment.class)))
+        lenient().when(repository.save(any(CartAbandonment.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
     }
 
